@@ -3,10 +3,12 @@ package com.finco.customer;
 
 public class CustomerFactory implements ICustomerFactory {
 
-	ICustomerFactory instance  = new CustomerFactory();
+	static ICustomerFactory instance  = new CustomerFactory();
 	
+	private CustomerFactory() {
+	}
 	
-	public ICustomerFactory getInstance() {
+	public static ICustomerFactory getInstance() {
 		return instance;
 	}
 
