@@ -1,4 +1,4 @@
-package com.finco.gui;
+package com.bank.gui;
 /**
 		A basic implementation of the JDialog class.
 **/
@@ -7,6 +7,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import com.finco.Controller;
+import com.finco.gui.AbstractCustomerDialog;
 
 public class JDialog_AddPAcc extends AbstractCustomerDialog
 {
@@ -26,14 +27,14 @@ public class JDialog_AddPAcc extends AbstractCustomerDialog
 		// parses your Java file into its visual environment. 
 		//{{ INIT_CONTROLS 
 		
-		JRadioButton_Chk.setText("Checkings");
+		/*JRadioButton_Chk.setText("Checkings");
 		JRadioButton_Chk.setActionCommand("Checkings");
 		getContentPane().add(JRadioButton_Chk);
 		JRadioButton_Chk.setBounds(36,0,84,24);
 		JRadioButton_Sav.setText("Savings");
 		JRadioButton_Sav.setActionCommand("Savings");
 		getContentPane().add(JRadioButton_Sav);
-		JRadioButton_Sav.setBounds(36,24,84,24);
+		JRadioButton_Sav.setBounds(36,24,84,24);*/
 		JLabel1.setText("Name");
 		getContentPane().add(JLabel1);
 		JLabel1.setForeground(java.awt.Color.black);
@@ -94,8 +95,8 @@ public class JDialog_AddPAcc extends AbstractCustomerDialog
 	
 		//{{REGISTER_LISTENERS
 		SymMouse aSymMouse = new SymMouse();
-		JRadioButton_Chk.addMouseListener(aSymMouse);
-		JRadioButton_Sav.addMouseListener(aSymMouse);
+		/*JRadioButton_Chk.addMouseListener(aSymMouse);
+		JRadioButton_Sav.addMouseListener(aSymMouse);*/
 		SymAction lSymAction = new SymAction();
 		JButton_OK.addActionListener(lSymAction);
 		JButton_Cancel.addActionListener(lSymAction);
@@ -106,8 +107,8 @@ public class JDialog_AddPAcc extends AbstractCustomerDialog
 
 
 	//{{DECLARE_CONTROLS
-	javax.swing.JRadioButton JRadioButton_Chk = new javax.swing.JRadioButton();
-	javax.swing.JRadioButton JRadioButton_Sav = new javax.swing.JRadioButton();
+	/*javax.swing.JRadioButton JRadioButton_Chk = new javax.swing.JRadioButton();
+	javax.swing.JRadioButton JRadioButton_Sav = new javax.swing.JRadioButton();*/
 	javax.swing.JLabel JLabel1 = new javax.swing.JLabel();
 	javax.swing.JLabel JLabel2 = new javax.swing.JLabel();
 	javax.swing.JLabel JLabel3 = new javax.swing.JLabel();
@@ -134,10 +135,10 @@ public class JDialog_AddPAcc extends AbstractCustomerDialog
 		public void mouseClicked(java.awt.event.MouseEvent event)
 		{
 			Object object = event.getSource();
-			if (object == JRadioButton_Chk)
+			/*if (object == JRadioButton_Chk)
 				JRadioButtonChk_mouseClicked(event);
 			else if (object == JRadioButton_Sav)
-				JRadioButtonSav_mouseClicked(event);
+				JRadioButtonSav_mouseClicked(event);*/
 		}
 	}
 
@@ -145,16 +146,16 @@ public class JDialog_AddPAcc extends AbstractCustomerDialog
 	{
 		//When Checking radio is clicked make this radio on 
 		//and make Saving account radio off
-		JRadioButton_Chk.setSelected(true);
-		JRadioButton_Sav.setSelected(false);
+		/*JRadioButton_Chk.setSelected(true);
+		JRadioButton_Sav.setSelected(false);*/
 	}
 
 	void JRadioButtonSav_mouseClicked(java.awt.event.MouseEvent event)
 	{
 		//When Saving radio is clicked make this radio on 
 		//and make Checking account radio off
-		JRadioButton_Chk.setSelected(false);
-		JRadioButton_Sav.setSelected(true);
+		/*JRadioButton_Chk.setSelected(false);
+		JRadioButton_Sav.setSelected(true);*/
 	 
 	}
 

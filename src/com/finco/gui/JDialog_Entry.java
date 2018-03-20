@@ -5,17 +5,17 @@ import javax.swing.*;
 
 import com.finco.Controller;
 
-public class JDialog_Deposit extends AbstractEntryDialog
+public class JDialog_Entry extends AbstractEntryDialog
 {
     
 
-    private BankFrm parentframe;
+    private AbstractFrame parentframe;
     private String accnr;
     private Controller controller;
     
-	public JDialog_Deposit(BankFrm parent, String aaccnr, Controller controller)
+	public JDialog_Entry(AbstractFrame parent, String aaccnr, Controller controller, String title)
 	{
-		super(parent, "Deposit");
+		super(parent, title);
 		parentframe=parent;
 		accnr=aaccnr;
 		this.controller = controller;
@@ -83,13 +83,21 @@ public class JDialog_Deposit extends AbstractEntryDialog
 
 	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
-		controller.setAmountDeposit(JTextField_Deposit.getText());
+		String amount = JTextField_Deposit.getText();
+		controller.setAmountDeposit(amount);
+		System.out.println(amount);
         dispose();
 	}
 
 	void JButtonCalcel_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		dispose();
+	}
+	
+	@Override
+	public void setAccnr(String value) {
+		// TODO Auto-generated method stub
+		this.accnr = value;
 	}
 
 }

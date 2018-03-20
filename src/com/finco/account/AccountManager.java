@@ -27,7 +27,6 @@ public class AccountManager {
 	}
 	
 	public Iterator<IAccount> generateReport() {
-		
 		return this.accountList.iterator();
 	}
 	
