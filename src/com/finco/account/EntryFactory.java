@@ -4,13 +4,13 @@ import java.time.LocalDate;
 
 public class EntryFactory implements IEntryFactory{
 	
-	private static IEntryFactory myInstance = new EntryFactory();
+	private IEntryFactory myInstance = new EntryFactory();
 	
 	private EntryFactory() {
 		
 	}
 	
-	public static IEntryFactory getInstance() {
+	public IEntryFactory getInstance() {
 		return myInstance;
 	}
 
