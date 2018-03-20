@@ -1,17 +1,16 @@
-package com.bank.account;
+package com.credit_card.account;
 
 import com.finco.account.AAccount;
 import com.finco.account.IEntry;
 import com.finco.customer.ICustomer;
 
-public class SavingsAccount extends AAccount{
+public class SilverAccount extends AAccount{
 	
-
-	public SavingsAccount(ICustomer customer, String accNumber, double balance) {
+	public SilverAccount(ICustomer customer, String accNumber, double balance) {
 		super(customer, accNumber, balance);
 	}
 	
-	public SavingsAccount(ICustomer customer, String accNumber) {
+	public SilverAccount(ICustomer customer, String accNumber) {
 		super(customer, accNumber);
 	}
 	
@@ -32,3 +31,4 @@ public class SavingsAccount extends AAccount{
 	}
 
 }
+
