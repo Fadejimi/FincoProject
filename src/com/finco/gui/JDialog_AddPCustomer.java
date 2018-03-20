@@ -178,7 +178,7 @@ public class JDialog_AddPCustomer extends AbstractCustomerDialog
        controller.setCity(JTextField_CT.getText());
        controller.setZip(JTextField_ZIP.getText());
        controller.setState(JTextField_ST.getText());
-       
+       controller.setAccountType("account");
        controller.setNewaccount(true);
        dispose();
 	}
