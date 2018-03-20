@@ -4,13 +4,13 @@ import com.finco.customer.ICustomer;
 
 public class AccountFactory implements IAccountFactory{
 	
-	private IAccountFactory myInstance = new AccountFactory();
+	private static IAccountFactory myInstance = new AccountFactory();
 	
 	private AccountFactory() {
 		
 	}
 	
-	public IAccountFactory getInstance() {
+	public static IAccountFactory getInstance() {
 		return myInstance;
 	}
 

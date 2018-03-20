@@ -6,5 +6,6 @@ public interface IAccount {
 	public double getCurrentBalance();
 	public void notifyCustomer(IEntry entry);
 	public void addInterest(double interest);
+	public String getAccountNumber();
 	
 }
