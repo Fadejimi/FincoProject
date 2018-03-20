@@ -1,6 +1,6 @@
 package com.finco.gui;
 
-public class AbstractEntryDialog extends javax.swing.JDialog{
+public abstract class AbstractEntryDialog extends javax.swing.JDialog{
 	private AbstractFrame parentframe;
 	
 	public AbstractEntryDialog(AbstractFrame parentFrame, String title) {
@@ -12,4 +12,6 @@ public class AbstractEntryDialog extends javax.swing.JDialog{
 		setSize(268,126);
 		setVisible(false);
 	}
+	
+	public abstract void setAccnr(String value);
 }
