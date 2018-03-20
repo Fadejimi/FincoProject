@@ -11,7 +11,7 @@ public class AccountManager {
 
 	private IEntryFactory entryFactory = EntryFactory.getInstance();
 	
-	private double transactionBalance;
+	private double updatedAccountBalance;
 	
 	public void addAccount(IAccount acc) {
 		accountList.add(acc);
@@ -23,7 +23,7 @@ public class AccountManager {
 		
 		IEntry entry = entryFactory.getEntry(account, accountNumber, date,amount, entryType);
 		account.addEntry(entry);
-		
+		updatedAccountBalance = account.getCurrentBalance();
 	}
 	
 	public Iterator<IAccount> generateReport() {
@@ -43,6 +43,10 @@ public class AccountManager {
 				return account;
 		}
 		return null;
+	}
+	
+	public double getEntryBalance() {
+		return updatedAccountBalance;
 	}
 
 	public Iterator<IAccount> iterator() {
