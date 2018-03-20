@@ -11,6 +11,8 @@ public class AccountManager {
 
 	private IEntryFactory entryFactory = EntryFactory.getInstance();
 	
+	private double transactionBalance;
+	
 	public void addAccount(IAccount acc) {
 		accountList.add(acc);
 	}
@@ -43,4 +45,8 @@ public class AccountManager {
 		return null;
 	}
 
+	public Iterator<IAccount> iterator() {
+		return accountList.iterator();
+	}
+	
 }
