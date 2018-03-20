@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class AccountManager implements Iterable<IAccount>{
+public class AccountManager {
 	
 	private List<IAccount> accountList = new ArrayList<IAccount>();
 
@@ -20,11 +20,13 @@ public class AccountManager implements Iterable<IAccount>{
 		IAccount account = this.getAccount(accountNumber);
 		
 		IEntry entry = entryFactory.getEntry(account, accountNumber, date,amount, entryType);
+		account.addEntry(entry);
 		
 	}
 	
-	public void generateReport() {
+	public Iterator<IAccount> generateReport() {
 		
+		return this.accountList.iterator();
 	}
 	
 	public void addInterestOnAccounts(double interest) {
@@ -40,12 +42,5 @@ public class AccountManager implements Iterable<IAccount>{
 		}
 		return null;
 	}
-	
-	@Override
-	public Iterator<IAccount> iterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 
 }
