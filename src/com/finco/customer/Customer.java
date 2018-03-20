@@ -1,6 +1,7 @@
 package com.finco.customer;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.finco.account.IAccount;
@@ -27,7 +28,14 @@ public class Customer implements ICustomer{
 	public void addAccount(IAccount acct){
 		accnts.add(acct);
 	}
-	public void removeAccount(){}
+	public void removeAccount(IAccount acct){
+		Iterator it = accnts.iterator();
+		while (it.hasNext()){
+			if (it.next().equals(acct)){
+				it.remove();
+			}
+		}
+	}
 	public void sendEmailToCustomer(){}
 
 }
