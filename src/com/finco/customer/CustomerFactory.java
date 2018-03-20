@@ -5,7 +5,7 @@ public class CustomerFactory implements ICustomerFactory {
 	@Override
 	public Customer getCustomer(String name,String state,
 			String street,String city,String zip,String email) {
- 		return new Customer(null, null, null, null, null, null);
+ 		return new Customer(name, state, street, city, zip, email);
 	}
 	
 
