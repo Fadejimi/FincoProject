@@ -9,13 +9,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public abstract class AbstractGUI extends JFrame {
+public abstract class AbstractFrame extends JFrame {
 	private JPanel JPanel1;
 	private DefaultTableModel tableModel;
 	private JScrollPane JScrollPane1;
 	private JTable JTable1;
 	
-	public AbstractGUI(String title) {
+	public AbstractFrame(String title) {
 		JPanel1 = new JPanel();
 		
 		setTitle(title);

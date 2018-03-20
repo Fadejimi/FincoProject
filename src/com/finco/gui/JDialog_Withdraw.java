@@ -5,7 +5,7 @@ import javax.swing.*;
 
 
 
-public class JDialog_Withdraw extends javax.swing.JDialog
+public class JDialog_Withdraw extends AbstractEntryDialog
 {
    
     private BankFrm parentframe;
@@ -13,7 +13,7 @@ public class JDialog_Withdraw extends javax.swing.JDialog
 
 	public JDialog_Withdraw(BankFrm parent, String aaccnr)
 	{
-		super(parent);
+		super(parent, "Withdraw");
 		parentframe=parent;
 		accnr=aaccnr;
 		
@@ -23,11 +23,7 @@ public class JDialog_Withdraw extends javax.swing.JDialog
 		// what Visual Cafe can generate, or Visual Cafe may be unable to back
 		// parses your Java file into its visual envirenment.  
 
-		setTitle("Withdraw");
-		setModal(true);
-		getContentPane().setLayout(null);
-		setSize(277,134);
-		setVisible(false);
+		
 		JLabel1.setText("Acc Nr");
 		getContentPane().add(JLabel1);
 		JLabel1.setForeground(java.awt.Color.black);
