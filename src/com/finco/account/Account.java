@@ -22,6 +22,12 @@ public class Account implements IAccount{
 		this.balance = balance;
 	}
 	
+	public Account(ICustomer customer, String accNumber) {
+		this.customer = customer;
+		this.accountNumber = accNumber;
+		this.balance = 0.00;
+	}
+	
 	public void addEntry(IEntry entry) {
 		this.setCurrentBalance(executeTransaction(entry));
 		entryList.add(entry);
@@ -33,7 +39,8 @@ public class Account implements IAccount{
 	}
 	
 	public void addInterest(double interest) {
-		balance += interest * balance;
+		double bal = (interest * balance) + balance;
+		setCurrentBalance(bal);
 	}
 	
 	// does it get the strategy reference
