@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.finco.account.Entry;
-import com.finco.account.EntryType;
-import com.finco.account.IAccount;
+ import com.finco.account.IAccount;
 import com.finco.account.IEntry;
+import com.finco.customer.autoemail.AutomatedEmail;
+import com.finco.customer.autoemail.IAutomatedEmail;
 
 public class Customer implements ICustomer{
 	private String name;
@@ -45,8 +45,9 @@ public class Customer implements ICustomer{
 	}
 	public void sendEmailToCustomer(IEntry entry){
 		this.entry = entry;
-		//Will be implemented after entry Class is implmented from saroj
-		//autoEmail = new AutomatedEmail(entry., amount, currentBalance);
+ 		autoEmail = new AutomatedEmail(entry.getEntryType().toString(), entry.getTransactionAmount(),
+				entry.getAccount().getCurrentBalance());
+		autoEmail.excute();
 	}
 
 }
