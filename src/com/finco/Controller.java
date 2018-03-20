@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.finco.account.Account;
 import com.finco.account.AccountFactory;
 import com.finco.account.AccountManager;
 import com.finco.account.EntryType;
@@ -15,12 +16,12 @@ import com.finco.customer.ICustomer;
 import com.finco.customer.ICustomerFactory;
 import com.finco.gui.AbstractEntryDialog;
 import com.finco.gui.FincoFrm;
-import com.finco.gui.JDialog_AddPAcc;
-import com.finco.gui.JDialog_Deposit;
-import com.finco.gui.JDialog_Withdraw;
+import com.finco.gui.JDialog_AddPCustomer;
+import com.finco.gui.JDialog_Entry;
 
 import java.awt.event.*;
 import java.time.LocalDate;
+import java.util.Iterator;
 
 public class Controller {
 	FincoFrm frame;
@@ -38,6 +39,7 @@ public class Controller {
     private DefaultTableModel model;
     private JTable JTable1;
     String accnr = null;
+    int selection = -1;
 	
 	public Controller(FincoFrm frame, AccountManager manager) {
 		this.frame = frame;
@@ -86,7 +88,7 @@ public class Controller {
 	private void createCustomerAccount() {
 		customerFactory = CustomerFactory.getInstance();
 		accountFactory = AccountFactory.getInstance();
-		JDialog_AddPAcc pac = new JDialog_AddPAcc(frame, this);
+		JDialog_AddPCustomer pac = new JDialog_AddPCustomer(frame, this);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
@@ -203,10 +205,21 @@ public class Controller {
 
 	private void addInterest() {
 		manager.addInterestOnAccounts(0.15);
+		updateAccounts();
+	}
+	
+	private void updateAccounts() {
+		int count = 0;
+		Iterator iterator = manager.iterator();
+		while(iterator.hasNext()) {
+			Account acc = (Account) iterator.next();
+			model.setValueAt(String.valueOf(acc.getCurrentBalance()),count, 5);
+			count++;
+		}
 	}
 	
 	private boolean setAccnr() {
-		int selection = JTable1.getSelectionModel().getMinSelectionIndex();
+		selection = JTable1.getSelectionModel().getMinSelectionIndex();
 		if (selection >= 0) {
 			accnr = (String)model.getValueAt(selection, 0);
 			return true;
@@ -233,10 +246,11 @@ public class Controller {
 	
 	private void deposit() {
 		if (setAccnr()) {
-			AbstractEntryDialog dialog = new JDialog_Deposit(frame, accnr, this);
+			AbstractEntryDialog dialog = new JDialog_Entry(frame, accnr, this,"Deposit");
 			Double deposit = getAmount(dialog);
 			if (deposit != null && accnr != null) {
 				manager.createEntry(accnr, LocalDate.now(), deposit, EntryType.DEPOSIT);
+				model.setValueAt(String.valueOf(manager.getEntryBalance()),selection, 5);
 			}
 			accnr = null;
 		}
@@ -244,10 +258,11 @@ public class Controller {
 	
 	private void withdraw() {
 		if (setAccnr()) {
-			AbstractEntryDialog dialog = new JDialog_Withdraw(frame, accnr, this);
+			AbstractEntryDialog dialog = new JDialog_Entry(frame, accnr, this, "Withdraw");
 			Double withdraw = getAmount(dialog);
 			if (withdraw != null && accnr != null) {
 				manager.createEntry(accnr, LocalDate.now(), withdraw, EntryType.WITHDRAW);
+				model.setValueAt(String.valueOf(manager.getEntryBalance()),selection, 5);
 			}
 			accnr = null;
 		}
