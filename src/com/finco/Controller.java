@@ -13,15 +13,17 @@ import com.finco.account.IAccountFactory;
 import com.finco.customer.CustomerFactory;
 import com.finco.customer.ICustomer;
 import com.finco.customer.ICustomerFactory;
-import com.finco.gui.BankFrm;
+import com.finco.gui.AbstractEntryDialog;
+import com.finco.gui.FincoFrm;
 import com.finco.gui.JDialog_AddPAcc;
+import com.finco.gui.JDialog_Deposit;
 import com.finco.gui.JDialog_Withdraw;
 
 import java.awt.event.*;
 import java.time.LocalDate;
 
 public class Controller {
-	BankFrm frame;
+	FincoFrm frame;
 	AccountManager manager;
 	JButton buttonPerAC;
 	JButton buttonCusAC;
@@ -37,7 +39,7 @@ public class Controller {
     private JTable JTable1;
     String accnr = null;
 	
-	public Controller(BankFrm frame, AccountManager manager) {
+	public Controller(FincoFrm frame, AccountManager manager) {
 		this.frame = frame;
 		this.manager = manager;
 		
@@ -98,10 +100,10 @@ public class Controller {
             rowdata[0] = accountnr;
             rowdata[1] = clientName;
             rowdata[2] = city;
-            rowdata[3] = "P";
-            rowdata[4] = "A";
+            rowdata[3] = state;
+            rowdata[4] = street;
             rowdata[5] = "0";
-            System.out.println(accountnr + ", " + clientName + ", " + city);
+            //System.out.println(accountnr + ", " + clientName + ", " + city);
             model.addRow(rowdata);
             JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
             model.fireTableDataChanged();
@@ -203,36 +205,51 @@ public class Controller {
 		manager.addInterestOnAccounts(0.15);
 	}
 	
-	private double getAmount() {
+	private boolean setAccnr() {
 		int selection = JTable1.getSelectionModel().getMinSelectionIndex();
-		Double amount = null;
-        if (selection >=0){
-        		accnr = (String)model.getValueAt(selection, 0);
-
-		    //Show the dialog for adding withdraw amount for the current mane
-		    JDialog_Withdraw wd = new JDialog_Withdraw(frame,accnr, this);
-		    wd.setBounds(430, 15, 275, 140);
-		    wd.show();
-    		
-		    // compute new amount
-		    amount = Double.parseDouble(amountDeposit);        
+		if (selection >= 0) {
+			accnr = (String)model.getValueAt(selection, 0);
+			return true;
 		}
+		return false;
+	}
+	
+	private double getAmount(AbstractEntryDialog wd) {
+		Double amount = null;
+		
+		//Show the dialog for adding withdraw amount for the current mane
+		wd.setAccnr(accnr);
+		wd.setBounds(430, 15, 275, 140);
+		wd.show();
+		
+		// compute new amount
+		if (amountDeposit != null) {
+			amount = Double.parseDouble(amountDeposit);
+			amountDeposit = null;
+		}
+		
         return amount;
 	}
 	
 	private void deposit() {
-		Double deposit = getAmount();
-		if (deposit != null && accnr != null) {
-			manager.createEntry(accnr, LocalDate.now(), getAmount(), EntryType.DEPOSIT);
+		if (setAccnr()) {
+			AbstractEntryDialog dialog = new JDialog_Deposit(frame, accnr, this);
+			Double deposit = getAmount(dialog);
+			if (deposit != null && accnr != null) {
+				manager.createEntry(accnr, LocalDate.now(), deposit, EntryType.DEPOSIT);
+			}
+			accnr = null;
 		}
-		accnr = null;
 	}
 	
 	private void withdraw() {
-		Double withdraw = getAmount();
-		if (withdraw != null && accnr != null) {
-			manager.createEntry(accnr, LocalDate.now(), getAmount(), EntryType.WITHDRAW);
+		if (setAccnr()) {
+			AbstractEntryDialog dialog = new JDialog_Withdraw(frame, accnr, this);
+			Double withdraw = getAmount(dialog);
+			if (withdraw != null && accnr != null) {
+				manager.createEntry(accnr, LocalDate.now(), withdraw, EntryType.WITHDRAW);
+			}
+			accnr = null;
 		}
-		accnr = null;
 	}
 }

@@ -10,11 +10,11 @@ import com.finco.Controller;
 public class JDialog_Withdraw extends AbstractEntryDialog
 {
    
-    private BankFrm parentframe;
+    private AbstractFrame parentframe;
     private String accnr;
     private Controller controller;
 
-	public JDialog_Withdraw(BankFrm parent, String aaccnr, Controller controller)
+	public JDialog_Withdraw(AbstractFrame parent, String aaccnr, Controller controller)
 	{
 		super(parent, "Withdraw");
 		parentframe=parent;
@@ -91,5 +91,11 @@ public class JDialog_Withdraw extends AbstractEntryDialog
 	void JButtonCalcel_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		dispose();
+	}
+
+	@Override
+	public void setAccnr(String value) {
+		// TODO Auto-generated method stub
+		this.accnr = value;
 	}
 }

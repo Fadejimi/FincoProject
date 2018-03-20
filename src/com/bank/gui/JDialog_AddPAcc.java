@@ -1,4 +1,4 @@
-package com.finco.gui;
+package com.bank.gui;
 /**
 		A basic implementation of the JDialog class.
 **/
@@ -7,13 +7,14 @@ import java.awt.*;
 import javax.swing.*;
 
 import com.finco.Controller;
+import com.finco.gui.AbstractCustomerDialog;
 
 public class JDialog_AddPAcc extends AbstractCustomerDialog
 {
-    private FincoFrm parentframe;
+    private BankFrm parentframe;
     private Controller controller;
     
-	public JDialog_AddPAcc(FincoFrm parent, Controller controller)
+	public JDialog_AddPAcc(BankFrm parent, Controller controller)
 	{
 		super(parent, "Add personal account");
 		parentframe=parent;
