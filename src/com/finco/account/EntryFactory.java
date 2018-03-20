@@ -4,19 +4,19 @@ import java.time.LocalDate;
 
 public class EntryFactory implements IEntryFactory{
 	
-	private IEntryFactory myInstance = new EntryFactory();
+	private static IEntryFactory myInstance = new EntryFactory();
 	
 	private EntryFactory() {
 		
 	}
 	
-	public IEntryFactory getInstance() {
+	public static IEntryFactory getInstance() {
 		return myInstance;
 	}
 
-	public IEntry getEntry(String name, LocalDate date, double amount, EntryType entryType) {
+	public IEntry getEntry(IAccount account, String accountNumber, LocalDate date, double amount, EntryType entryType) {
 		
-		return new Entry(name, date, amount, entryType);
+		return new Entry(account, accountNumber, date, amount, entryType);
 		
 	}
 }
