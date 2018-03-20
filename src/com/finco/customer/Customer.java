@@ -7,6 +7,7 @@ import java.util.List;
 import com.finco.account.Entry;
 import com.finco.account.EntryType;
 import com.finco.account.IAccount;
+import com.finco.account.IEntry;
 
 public class Customer implements ICustomer{
 	private String name;
@@ -15,7 +16,7 @@ public class Customer implements ICustomer{
 	private String city;
 	private String zip;
 	private String email;
-	Entry entry;
+	IEntry entry;
 	IAutomatedEmail autoEmail;
 	List<IAccount> accnts;
 	
@@ -42,7 +43,7 @@ public class Customer implements ICustomer{
 			}
 		}
 	}
-	public void sendEmailToCustomer(Entry entry){
+	public void sendEmailToCustomer(IEntry entry){
 		this.entry = entry;
 		//Will be implemented after entry Class is implmented from saroj
 		//autoEmail = new AutomatedEmail(entry., amount, currentBalance);
