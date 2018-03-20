@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.finco.account.Entry;
+import com.finco.account.EntryType;
 import com.finco.account.IAccount;
 
 public class Customer implements ICustomer{
@@ -13,6 +15,8 @@ public class Customer implements ICustomer{
 	private String city;
 	private String zip;
 	private String email;
+	Entry entry;
+	IAutomatedEmail autoEmail;
 	List<IAccount> accnts;
 	
 	Customer(String name,String state,String street,String city,String zip,String email){
@@ -23,6 +27,8 @@ public class Customer implements ICustomer{
 		this.zip = zip;
 		this.email = email;
 		accnts = new ArrayList();
+		 
+		
 	}
 	
 	public void addAccount(IAccount acct){
@@ -36,6 +42,10 @@ public class Customer implements ICustomer{
 			}
 		}
 	}
-	public void sendEmailToCustomer(){}
+	public void sendEmailToCustomer(Entry entry){
+		this.entry = entry;
+		//Will be implemented after entry Class is implmented from saroj
+		//autoEmail = new AutomatedEmail(entry., amount, currentBalance);
+	}
 
 }
