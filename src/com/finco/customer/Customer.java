@@ -1,5 +1,6 @@
 package com.finco.customer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.finco.account.IAccount;
@@ -20,9 +21,12 @@ public class Customer implements ICustomer{
 		this.city = city;
 		this.zip = zip;
 		this.email = email;
+		accnts = new ArrayList();
 	}
 	
-	public void addAccount(){}
+	public void addAccount(IAccount acct){
+		accnts.add(acct);
+	}
 	public void removeAccount(){}
 	public void sendEmailToCustomer(){}
 

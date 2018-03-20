@@ -3,9 +3,9 @@ package com.finco.customer;
 public class CustomerFactory implements ICustomerFactory {
 
 	@Override
-	public Customer getCustomer() {
-		// TODO Auto-generated method stub
-		return new Customer(null, null, null, null, null, null);
+	public Customer getCustomer(String type,String name,String state,
+			String street,String city,String zip,String email) {
+ 		return new Customer(null, null, null, null, null, null);
 	}
 	
 
