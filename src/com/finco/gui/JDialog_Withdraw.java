@@ -1,3 +1,5 @@
+package com.finco.gui;
+
 import java.awt.*;
 import javax.swing.*;
 
