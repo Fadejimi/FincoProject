@@ -20,6 +20,7 @@ public class JDialog_AddCompAcc extends javax.swing.JDialog
 		// what Visual Cafe can generate, or Visual Cafe may be unable to back
 		// parse  your Java file into its visual envirenment. 
 		//{{ INIT_CONTROLS 
+		
 		setTitle("Add compamy account");
 		setModal(true);
 		getContentPane().setLayout(null);
