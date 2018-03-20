@@ -6,76 +6,58 @@ import java.util.List;
 
 import com.finco.customer.ICustomer;
 
-public class Account extends AAccount{
+public abstract class AAccount implements IAccount {
 
-	/*
 	private ICustomer customer;
 	private String accountNumber;
 	private double balance;
-	
+
 	private List<IEntry> entryList = new ArrayList<IEntry>();
-	
+
 	private IBalanceStrategy balanceTransaction;
-	
-	*/
-	
-	public Account(ICustomer customer, String accNumber, double balance) {
-		/*
+
+	public AAccount(ICustomer customer, String accNumber, double balance) {
 		this.customer = customer;
 		this.accountNumber = accNumber;
 		this.balance = balance;
-		*/
-		super(customer, accNumber, balance);
 	}
-	
-	public Account(ICustomer customer, String accNumber) {
-		/*
+
+	public AAccount(ICustomer customer, String accNumber) {
 		this.customer = customer;
 		this.accountNumber = accNumber;
 		this.balance = 0.00;
-		*/
-		super(customer, accNumber);
 	}
-	
+
 	public void addEntry(IEntry entry) {
-		/*
 		this.setCurrentBalance(executeTransaction(entry));
 		entryList.add(entry);
 		this.notifyCustomer(entry);
-		*/
-		super.addEntry(entry);
 	}
-	
+
 	public void notifyCustomer(IEntry entry) {
-//		customer.sendEmailToCustomer(entry);
-		super.notifyCustomer(entry);
+		customer.sendEmailToCustomer(entry);
 	}
-	
+
 	public void addInterest(double interest) {
-		/*
 		double bal = (interest * balance) + balance;
 		setCurrentBalance(bal);
-		*/
-		super.addInterest(interest);
 	}
-	
+
 	// does it get the strategy reference
 	public double executeTransaction(IEntry entry) {
-		/*
-		if(entry.getEntryType() == EntryType.DEPOSIT) {
+
+		if (entry.getEntryType() == EntryType.DEPOSIT) {
 			balanceTransaction = new DepositStrategy();
-		} else if(entry.getEntryType() == EntryType.WITHDRAW) {
+		} else if (entry.getEntryType() == EntryType.WITHDRAW) {
 			balanceTransaction = new WithdrawStrategy();
 		}
 		return balanceTransaction.getUpdatedBalance(this.getCurrentBalance(), entry.getTransactionAmount());
-		*/
-		return super.executeTransaction(entry);
 	}
-	/*
+
 	public void setCurrentBalance(double balance) {
 		this.balance = balance;
 	}
-	
+
 	public double getCurrentBalance() {
 		return balance;
 	}
@@ -91,10 +73,7 @@ public class Account extends AAccount{
 	public Iterator<IEntry> getEntryListIterator() {
 		return entryList.iterator();
 	}
-*/
 	
-	/*
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -112,7 +91,7 @@ public class Account extends AAccount{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Account other = (Account) obj;
+		AAccount other = (AAccount) obj;
 		if (accountNumber == null) {
 			if (other.accountNumber != null)
 				return false;
@@ -125,8 +104,5 @@ public class Account extends AAccount{
 			return false;
 		return true;
 	}
-	
-	*/
-	
 	
 }
