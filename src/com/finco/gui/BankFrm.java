@@ -14,13 +14,13 @@ public class BankFrm extends AbstractFrame
     /****
      * init variables in the object
      ****/
-    String accountnr, clientName,street,city,zip,state,accountType,clientType,amountDeposit;
-    boolean newaccount;
+    //String accountnr, clientName,street,city,zip,state,accountType,clientType,amountDeposit;
+    //boolean newaccount;
     private DefaultTableModel model;
     private JTable JTable1;
     //private JScrollPane JScrollPane1;
     BankFrm myframe;
-    private Object rowdata[];
+    //private Object rowdata[];
     
 	public BankFrm()
 	{
@@ -31,10 +31,10 @@ public class BankFrm extends AbstractFrame
 		
 		
         JTable1 = getTable();
-        rowdata = new Object[8];
+        /*rowdata = new Object[8];
         newaccount=false;
         
-        	rowdata = new Object[8];
+        	rowdata = new Object[8];*/
 		
 		JButton_PerAC.setText("Add personal account");
 		addButton(JButton_PerAC, 24, 20, 192, 33);
@@ -62,11 +62,11 @@ public class BankFrm extends AbstractFrame
 		this.addWindowListener(aSymWindow);
 		SymAction lSymAction = new SymAction();
 		JButton_Exit.addActionListener(lSymAction);
-		JButton_PerAC.addActionListener(lSymAction);
+		/*JButton_PerAC.addActionListener(lSymAction);
 		JButton_CompAC.addActionListener(lSymAction);
 		JButton_Deposit.addActionListener(lSymAction);
 		JButton_Withdraw.addActionListener(lSymAction);
-		JButton_Addinterest.addActionListener(lSymAction);
+		JButton_Addinterest.addActionListener(lSymAction);*/
 		
 	}
 
@@ -76,7 +76,7 @@ public class BankFrm extends AbstractFrame
 	 * Sets the Look and Feel to the System Look and Feel.
 	 * Creates a new JFrame1 and makes it visible.
 	 *****************************************************/
-	static public void main(String args[])
+	/*static public void main(String args[])
 	{
 		try {
 		    // Add the following code if you want the Look and Feel
@@ -96,7 +96,7 @@ public class BankFrm extends AbstractFrame
 			//Ensure the application exits with an error condition.
 			System.exit(1);
 		}
-	}
+	}*/
 
 
 	//javax.swing.JPanel JPanel1 = new javax.swing.JPanel();
@@ -106,6 +106,31 @@ public class BankFrm extends AbstractFrame
 	javax.swing.JButton JButton_Withdraw = new javax.swing.JButton();
 	javax.swing.JButton JButton_Addinterest= new javax.swing.JButton();
 	javax.swing.JButton JButton_Exit = new javax.swing.JButton();
+
+	public javax.swing.JButton getJButton_PerAC() {
+		return JButton_PerAC;
+	}
+
+	public javax.swing.JButton getJButton_CompAC() {
+		return JButton_CompAC;
+	}
+
+	public javax.swing.JButton getJButton_Deposit() {
+		return JButton_Deposit;
+	}
+
+
+	public javax.swing.JButton getJButton_Withdraw() {
+		return JButton_Withdraw;
+	}
+
+	public javax.swing.JButton getJButton_Addinterest() {
+		return JButton_Addinterest;
+	}
+
+	public javax.swing.JButton getJButton_Exit() {
+		return JButton_Exit;
+	}
 
 	void exitApplication()
 	{
@@ -126,7 +151,7 @@ public class BankFrm extends AbstractFrame
 				BankFrm_windowClosing(event);
 		}
 	}
-
+	
 	void BankFrm_windowClosing(java.awt.event.WindowEvent event)
 	{
 		// to do: code goes here.
@@ -148,7 +173,7 @@ public class BankFrm extends AbstractFrame
 			Object object = event.getSource();
 			if (object == JButton_Exit)
 				JButtonExit_actionPerformed(event);
-			else if (object == JButton_PerAC)
+			/*else if (object == JButton_PerAC)
 				JButtonPerAC_actionPerformed(event);
 			else if (object == JButton_CompAC)
 				JButtonCompAC_actionPerformed(event);
@@ -157,7 +182,7 @@ public class BankFrm extends AbstractFrame
 			else if (object == JButton_Withdraw)
 				JButtonWithdraw_actionPerformed(event);
 			else if (object == JButton_Addinterest)
-				JButtonAddinterest_actionPerformed(event);
+				JButtonAddinterest_actionPerformed(event);*/
 			
 		}
 	}
@@ -169,14 +194,9 @@ public class BankFrm extends AbstractFrame
 		System.exit(0);
 	}
 
-	void JButtonPerAC_actionPerformed(java.awt.event.ActionEvent event)
+	/*void JButtonPerAC_actionPerformed(java.awt.event.ActionEvent event)
 	{
-		/*
-		 JDialog_AddPAcc type object is for adding personal information
-		 construct a JDialog_AddPAcc type object 
-		 set the boundaries and show it 
-		*/
-		
+			
 		JDialog_AddPAcc pac = new JDialog_AddPAcc(myframe);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
@@ -196,15 +216,10 @@ public class BankFrm extends AbstractFrame
 
        
         
-    }
+    }*/
 
-	void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event)
+	/* void JButtonCompAC_actionPerformed(java.awt.event.ActionEvent event)
 	{
-		/*
-		 construct a JDialog_AddCompAcc type object 
-		 set the boundaries and 
-		 show it 
-		*/
 		
 		JDialog_AddCompAcc pac = new JDialog_AddCompAcc(myframe);
 		pac.setBounds(450, 20, 300, 330);
@@ -223,9 +238,9 @@ public class BankFrm extends AbstractFrame
             newaccount=false;
         }
 
-	}
+	}*/
 
-	void JButtonDeposit_actionPerformed(java.awt.event.ActionEvent event)
+	/*void JButtonDeposit_actionPerformed(java.awt.event.ActionEvent event)
 	{
 	    // get selected name
         int selection = JTable1.getSelectionModel().getMinSelectionIndex();
@@ -244,11 +259,9 @@ public class BankFrm extends AbstractFrame
 		    long newamount=currentamount+deposit;
 		    model.setValueAt(String.valueOf(newamount),selection, 5);
 		}
-		
-		
-	}
+	}*/
 
-	void JButtonWithdraw_actionPerformed(java.awt.event.ActionEvent event)
+	/*void JButtonWithdraw_actionPerformed(java.awt.event.ActionEvent event)
 	{
 	    // get selected name
         int selection = JTable1.getSelectionModel().getMinSelectionIndex();
@@ -272,7 +285,7 @@ public class BankFrm extends AbstractFrame
 		}
 		
 		
-	}
+	}*/
 	
 	void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event)
 	{

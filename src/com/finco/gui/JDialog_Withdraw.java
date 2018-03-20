@@ -3,6 +3,8 @@ package com.finco.gui;
 import java.awt.*;
 import javax.swing.*;
 
+import com.finco.Controller;
+
 
 
 public class JDialog_Withdraw extends AbstractEntryDialog
@@ -10,8 +12,9 @@ public class JDialog_Withdraw extends AbstractEntryDialog
    
     private BankFrm parentframe;
     private String accnr;
+    private Controller controller;
 
-	public JDialog_Withdraw(BankFrm parent, String aaccnr)
+	public JDialog_Withdraw(BankFrm parent, String aaccnr, Controller controller)
 	{
 		super(parent, "Withdraw");
 		parentframe=parent;
@@ -81,7 +84,7 @@ public class JDialog_Withdraw extends AbstractEntryDialog
 
 	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
-        parentframe.amountDeposit=JTextField_AMT.getText();
+        controller.setAmountDeposit(JTextField_AMT.getText());
 		dispose();
 	}
 
