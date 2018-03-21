@@ -6,7 +6,6 @@ import com.finco.customer.ICustomer;
 
 public class SavingsAccount extends AAccount{
 	
-
 	public SavingsAccount(ICustomer customer, String accNumber, double balance) {
 		super(customer, accNumber, balance);
 	}
