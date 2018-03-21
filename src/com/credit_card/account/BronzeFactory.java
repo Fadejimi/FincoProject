@@ -4,13 +4,23 @@ import com.finco.account.IAccount;
 import com.finco.account.IAccountFactory;
 import com.finco.customer.ICustomer;
 
-public class BronzeFactory implements IAccountFactory{
+public class BronzeFactory implements IAccountFactory {
 
-	@Override
-	public IAccount getAccount(ICustomer customer, String accountNumber,
-			double balance) {
-		// TODO Auto-generated method stub
-		return new BronzeAccount(customer, accountNumber, balance);
+	// @Override
+	// public IAccount getAccount(ICustomer customer, String accountNumber,
+	// double balance) {
+	// // TODO Auto-generated method stub
+	// return new BronzeAccount(customer, accountNumber, balance);
+	// }
+
+	private IAccount account;
+
+	public BronzeFactory(ICustomer customer, String accountNumber, double balance) {
+		account = new BronzeAccount(customer, accountNumber, balance);
+	}
+
+	public IAccount getAccount() {
+		return account;
 	}
 
 }

@@ -56,10 +56,6 @@ public class FincoFrm extends AbstractFrame
 		
 	}
 
-	
-	
-
-
 	//javax.swing.JPanel JPanel1 = new javax.swing.JPanel();
 	javax.swing.JButton JButton_PerAC = new javax.swing.JButton();
 	javax.swing.JButton JButton_CompAC = new javax.swing.JButton();
