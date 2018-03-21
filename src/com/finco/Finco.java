@@ -13,9 +13,9 @@ public class Finco {
 	
 	public static void main(String [] args) {
 		AccountManager acctManager = new AccountManager();
-		FincoFrm bankFrame = new FincoFrm(); 
-		FincoController controller = new FincoController(bankFrame, acctManager);
+		FincoFrm fincoFrame = new FincoFrm(); 
+		FincoController controller = new FincoController(fincoFrame, acctManager);
 		
-		bankFrame.setVisible(true);
+		fincoFrame.setVisible(true);
 	}
 }

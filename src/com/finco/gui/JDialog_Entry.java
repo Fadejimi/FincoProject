@@ -3,6 +3,7 @@ package com.finco.gui;
 import java.awt.*;
 import javax.swing.*;
 
+import com.finco.Controller;
 import com.finco.FincoController;
 
 public class JDialog_Entry extends AbstractEntryDialog
@@ -11,9 +12,9 @@ public class JDialog_Entry extends AbstractEntryDialog
 
     private AbstractFrame parentframe;
     private String accnr;
-    private FincoController controller;
+    private Controller controller;
     
-	public JDialog_Entry(AbstractFrame parent, String aaccnr, FincoController controller, String title)
+	public JDialog_Entry(AbstractFrame parent, String aaccnr, Controller controller, String title)
 	{
 		super(parent, title);
 		parentframe=parent;
@@ -84,7 +85,7 @@ public class JDialog_Entry extends AbstractEntryDialog
 	void JButtonOK_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		String amount = JTextField_Deposit.getText();
-		controller.setAmountDeposit(amount);
+		controller.setAmount(amount);
 		System.out.println(amount);
         dispose();
 	}

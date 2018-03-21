@@ -11,9 +11,14 @@ import javax.swing.table.DefaultTableModel;
 
 import com.bank.account.AbstractAccountFactory;
 import com.bank.customer.PersonalCustomerFactory;
+import com.bank.customer.AbstractCustomerFactory;
+import com.bank.customer.CompanyCustomer;
 import com.bank.customer.PersonalCustomer;
 import com.bank.gui.BankFrm;
 import com.bank.gui.JDialog_AddPAcc;
+import com.finco.Controller;
+import com.finco.account.AAccount;
+import com.finco.account.Account;
 import com.finco.account.AccountManager;
 import com.finco.account.EntryType;
 import com.finco.account.IAccount;
@@ -22,8 +27,9 @@ import com.finco.customer.ICustomer;
 import com.finco.customer.ICustomerFactory;
 import com.finco.gui.AbstractEntryDialog;
 import com.finco.gui.FincoFrm;
+import com.finco.gui.JDialog_Entry;
 
-public class BankController {
+public class BankController implements Controller {
 	BankFrm frame;
 	AccountManager manager;
 	JButton buttonPerAC;
@@ -95,7 +101,7 @@ public class BankController {
 	}
 	
 	private void createPersonalAccount() {
-		customerFactory = PersonalCustomerFactory.getInstance();
+		customerFactory = AbstractCustomerFactory.getFactory("personal");
 		JDialog_AddPAcc pac = new JDialog_AddPAcc(frame, this);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
@@ -105,6 +111,35 @@ public class BankController {
 			ICustomer customer = customerFactory.getCustomer(clientName, state, street, 
 					city, zip, email);
 			((PersonalCustomer) customer).setBirthDate(birthdate);
+			IAccount account = accountFactory.getAccount(customer, accountnr, 0);
+			manager.addAccount(account);
+			// add row to table
+            rowdata[0] = accountnr;
+            rowdata[1] = clientName;
+            rowdata[2] = city;
+            rowdata[3] = state;
+            rowdata[4] = accountType;
+            rowdata[5] = "0";
+            //System.out.println(accountnr + ", " + clientName + ", " + city);
+            model.addRow(rowdata);
+            JTable1.getSelectionModel().setAnchorSelectionIndex(-1);
+            model.fireTableDataChanged();
+            newaccount=false;
+            
+        }
+	}
+	
+	private void createCustomerAccount() {
+		customerFactory = AbstractCustomerFactory.getFactory("company");
+		JDialog_AddPAcc pac = new JDialog_AddPAcc(frame, this);
+		pac.setBounds(450, 20, 300, 330);
+		pac.show();
+
+		if (newaccount){
+			accountFactory = AbstractAccountFactory.getFactory(accountType);
+			ICustomer customer = customerFactory.getCustomer(clientName, state, street, 
+					city, zip, email);
+			((CompanyCustomer) customer).setNoOfEmployee(Integer.parseInt(noEmployees));;
 			IAccount account = accountFactory.getAccount(customer, accountnr, 0);
 			manager.addAccount(account);
 			// add row to table
@@ -191,7 +226,7 @@ public class BankController {
 		return amountDeposit;
 	}
 
-	public void setAmountDeposit(String amountDeposit) {
+	public void setAmount(String amountDeposit) {
 		this.amountDeposit = amountDeposit;
 	}
 
@@ -229,7 +264,7 @@ public class BankController {
 		int count = 0;
 		Iterator iterator = manager.iterator();
 		while(iterator.hasNext()) {
-			Account acc = (Account) iterator.next();
+			AAccount acc = (AAccount) iterator.next();
 			model.setValueAt(String.valueOf(acc.getCurrentBalance()),count, 5);
 			count++;
 		}

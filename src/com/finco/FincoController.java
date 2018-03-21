@@ -23,7 +23,7 @@ import java.awt.event.*;
 import java.time.LocalDate;
 import java.util.Iterator;
 
-public class FincoController {
+public class FincoController implements Controller{
 	FincoFrm frame;
 	AccountManager manager;
 	JButton buttonPerAC;
@@ -182,7 +182,7 @@ public class FincoController {
 		return amountDeposit;
 	}
 
-	public void setAmountDeposit(String amountDeposit) {
+	public void setAmount(String amountDeposit) {
 		this.amountDeposit = amountDeposit;
 	}
 
