@@ -7,12 +7,16 @@ import com.finco.customer.ICustomer;
 public class CompanyCustomer extends ACustomer {
 
 	String noOfEmployee;
+	
 	public CompanyCustomer(String name, String state, String street,
-			String city, String zip,String noOfEmployee, String email) {
+			String city, String zip, String email) {
 		super(name, state, street, city, zip, email);
 		// TODO Auto-generated constructor stub
+ 		
+	}
+
+	public void setNoOfEmployee(String noOfEmployee) {
 		this.noOfEmployee = noOfEmployee;
-		
 	}
 
 	

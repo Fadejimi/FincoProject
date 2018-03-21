@@ -31,11 +31,11 @@ public class BankFrm extends AbstractFrame
 		
         JTable1 = getTable();
         	
-		JButton_PerAC.setText("Add Account");
+		JButton_PerAC.setText("Add Personal Account");
 		addButton(JButton_PerAC, 24, 20, 192, 33);
 		
-		
-		JButton_CompAC.setActionCommand("jbutton");
+		JButton_CompAC.setText("Add company account");
+		addButton(JButton_CompAC, 240,20,192,33);
 		
 		JButton_Deposit.setText("Deposit");
 		addButton(JButton_Deposit,468,104,96,33);

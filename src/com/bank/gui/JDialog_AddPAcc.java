@@ -6,15 +6,15 @@ package com.bank.gui;
 import java.awt.*;
 import javax.swing.*;
 
-import com.finco.Controller;
+import com.bank.BankController;
 import com.finco.gui.AbstractCustomerDialog;
 
 public class JDialog_AddPAcc extends AbstractCustomerDialog
 {
     private BankFrm parentframe;
-    private Controller controller;
+    private BankController controller;
     
-	public JDialog_AddPAcc(BankFrm parent, Controller controller)
+	public JDialog_AddPAcc(BankFrm parent, BankController controller)
 	{
 		super(parent, "Add personal account");
 		parentframe=parent;
@@ -27,14 +27,14 @@ public class JDialog_AddPAcc extends AbstractCustomerDialog
 		// parses your Java file into its visual environment. 
 		//{{ INIT_CONTROLS 
 		
-		/*JRadioButton_Chk.setText("Checkings");
+		JRadioButton_Chk.setText("Checkings");
 		JRadioButton_Chk.setActionCommand("Checkings");
 		getContentPane().add(JRadioButton_Chk);
 		JRadioButton_Chk.setBounds(36,0,84,24);
 		JRadioButton_Sav.setText("Savings");
 		JRadioButton_Sav.setActionCommand("Savings");
 		getContentPane().add(JRadioButton_Sav);
-		JRadioButton_Sav.setBounds(36,24,84,24);*/
+		JRadioButton_Sav.setBounds(36,24,84,24);
 		JLabel1.setText("Name");
 		getContentPane().add(JLabel1);
 		JLabel1.setForeground(java.awt.Color.black);
@@ -107,8 +107,8 @@ public class JDialog_AddPAcc extends AbstractCustomerDialog
 
 
 	//{{DECLARE_CONTROLS
-	/*javax.swing.JRadioButton JRadioButton_Chk = new javax.swing.JRadioButton();
-	javax.swing.JRadioButton JRadioButton_Sav = new javax.swing.JRadioButton();*/
+	javax.swing.JRadioButton JRadioButton_Chk = new javax.swing.JRadioButton();
+	javax.swing.JRadioButton JRadioButton_Sav = new javax.swing.JRadioButton();
 	javax.swing.JLabel JLabel1 = new javax.swing.JLabel();
 	javax.swing.JLabel JLabel2 = new javax.swing.JLabel();
 	javax.swing.JLabel JLabel3 = new javax.swing.JLabel();
@@ -179,7 +179,13 @@ public class JDialog_AddPAcc extends AbstractCustomerDialog
        controller.setCity(JTextField_CT.getText());
        controller.setZip(JTextField_ZIP.getText());
        controller.setState(JTextField_ST.getText());
-       
+       controller.setBirthdate(JTextField_BD.getText());
+       if (JRadioButton_Chk.isSelected()) {
+	   		controller.setAccountType("C");
+       }
+       else {
+	   		controller.setAccountType("S");
+       }
        controller.setNewaccount(true);
        dispose();
 	}

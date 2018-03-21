@@ -23,7 +23,7 @@ import java.awt.event.*;
 import java.time.LocalDate;
 import java.util.Iterator;
 
-public class Controller {
+public class FincoController {
 	FincoFrm frame;
 	AccountManager manager;
 	JButton buttonPerAC;
@@ -41,7 +41,7 @@ public class Controller {
     String accnr = null;
     int selection = -1;
 	
-	public Controller(FincoFrm frame, AccountManager manager) {
+	public FincoController(FincoFrm frame, AccountManager manager) {
 		this.frame = frame;
 		this.manager = manager;
 		
