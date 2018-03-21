@@ -10,19 +10,26 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.bank.account.AbstractAccountFactory;
+import com.bank.account.CheckingAccount;
+import com.bank.account.CheckingAccountFactory;
+import com.bank.account.SavingsAccount;
+import com.bank.account.SavingsAccountFactory;
 import com.bank.customer.PersonalCustomerFactory;
 import com.bank.customer.AbstractCustomerFactory;
 import com.bank.customer.CompanyCustomer;
+import com.bank.customer.CompanyCustomerFactory;
 import com.bank.customer.PersonalCustomer;
 import com.bank.gui.BankFrm;
 import com.bank.gui.JDialog_AddPAcc;
 import com.finco.Controller;
 import com.finco.account.AAccount;
 import com.finco.account.Account;
+import com.finco.account.AccountFactory;
 import com.finco.account.AccountManager;
 import com.finco.account.EntryType;
 import com.finco.account.IAccount;
 import com.finco.account.IAccountFactory;
+import com.finco.customer.CustomerFactory;
 import com.finco.customer.ICustomer;
 import com.finco.customer.ICustomerFactory;
 import com.finco.gui.AbstractEntryDialog;
@@ -100,18 +107,27 @@ public class BankController implements Controller {
 		});
 	}
 	
+	private IAccountFactory getAccountFactory(ICustomer customer, String accountnr, 
+			double balance, String acctType) {
+		if (acctType.equals("checkings")) {
+			return new CheckingAccountFactory(customer, accountnr, balance);
+		}
+		else {
+			return new SavingsAccountFactory(customer, accountnr, balance);
+		}
+	}
+	
 	private void createPersonalAccount() {
-		customerFactory = AbstractCustomerFactory.getFactory("personal");
 		JDialog_AddPAcc pac = new JDialog_AddPAcc(frame, this);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
 		if (newaccount){
-			accountFactory = AbstractAccountFactory.getFactory(accountType);
-			ICustomer customer = customerFactory.getCustomer(clientName, state, street, 
-					city, zip, email);
-			((PersonalCustomer) customer).setBirthDate(birthdate);
-			IAccount account = accountFactory.getAccount(customer, accountnr, 0);
+			customerFactory = new PersonalCustomerFactory(clientName, state, street, 
+					city, zip, birthdate, email);
+			ICustomer customer = customerFactory.getCustomer();
+			accountFactory = getAccountFactory(customer, accountnr, 0, accountType);
+			IAccount account = accountFactory.getAccount();
 			manager.addAccount(account);
 			// add row to table
             rowdata[0] = accountnr;
@@ -129,18 +145,18 @@ public class BankController implements Controller {
         }
 	}
 	
-	private void createCustomerAccount() {
-		customerFactory = AbstractCustomerFactory.getFactory("company");
+	private void createCompanyAccount() {
 		JDialog_AddPAcc pac = new JDialog_AddPAcc(frame, this);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
 		if (newaccount){
-			accountFactory = AbstractAccountFactory.getFactory(accountType);
-			ICustomer customer = customerFactory.getCustomer(clientName, state, street, 
-					city, zip, email);
-			((CompanyCustomer) customer).setNoOfEmployee(Integer.parseInt(noEmployees));;
-			IAccount account = accountFactory.getAccount(customer, accountnr, 0);
+			int emps = Integer.parseInt(noEmployees);
+			customerFactory = new CompanyCustomerFactory(clientName, state, street, 
+					city, zip, emps, email);
+			ICustomer customer = customerFactory.getCustomer();
+			accountFactory = getAccountFactory(customer, accountnr, 0, accountType);
+			IAccount account = accountFactory.getAccount();
 			manager.addAccount(account);
 			// add row to table
             rowdata[0] = accountnr;

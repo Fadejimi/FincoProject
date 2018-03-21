@@ -86,17 +86,15 @@ public class FincoController implements Controller{
 	}
 	
 	private void createCustomerAccount() {
-		customerFactory = CustomerFactory.getInstance();
-		accountFactory = AccountFactory.getInstance();
 		JDialog_AddPCustomer pac = new JDialog_AddPCustomer(frame, this);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
 		if (newaccount){
-			
-			ICustomer customer = customerFactory.getCustomer(clientName, state, street, 
-					city, zip, email);
-			IAccount account = accountFactory.getAccount(customer, accountnr, 0);
+			customerFactory = new CustomerFactory(clientName, state, street, city, zip, email);
+			ICustomer customer = customerFactory.getCustomer();
+			accountFactory = new AccountFactory(customer, accountnr, 0);
+			IAccount account = accountFactory.getAccount();
 			manager.addAccount(account);
 			// add row to table
             rowdata[0] = accountnr;
