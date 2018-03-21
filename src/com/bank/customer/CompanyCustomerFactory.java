@@ -1,7 +1,5 @@
 package com.bank.customer;
 
- import com.finco.customer.ACustomerFactory;
-import com.finco.customer.CustomerFactory;
 import com.finco.customer.ICustomer;
 import com.finco.customer.ICustomerFactory;
 

@@ -1,9 +1,7 @@
 package com.bank.customer;
 
-import com.finco.account.Account;
 import com.finco.customer.ACustomer;
-import com.finco.customer.ICustomer;
-
+ 
 public class CompanyCustomer extends ACustomer {
 
 	int noOfEmployee;

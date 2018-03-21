@@ -1,9 +1,7 @@
 package com.bank.customer;
 
-import com.finco.account.IAccount;
-import com.finco.customer.ACustomer;
-import com.finco.customer.ICustomer;
-
+ import com.finco.customer.ACustomer;
+ 
 public class PersonalCustomer extends ACustomer{
 
 	String birthDate;

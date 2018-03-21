@@ -2,8 +2,7 @@
 
 package com.bank.customer;
 
-import com.finco.customer.ICustomerFactory;
-
+ 
 public class AbstractCustomerFactory {
 
 //private static ICustomerFactory customerFactory = null;
