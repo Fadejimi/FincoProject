@@ -10,6 +10,9 @@ public class CustomerFactory implements ICustomerFactory {
 	String zip;
 	String email;
 	
+	public CustomerFactory() {
+	}
+	
 	public CustomerFactory (String name,String state,
 			String street,String city,String zip,String email){
 		this.name = name;
