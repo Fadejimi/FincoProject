@@ -2,20 +2,27 @@ package com.finco.customer;
 
 
 public class CustomerFactory implements ICustomerFactory {
-
-	static ICustomerFactory instance  = new CustomerFactory();
 	
-	private CustomerFactory() {
-	}
+	String name;
+	String state;
+	String street;
+	String city;
+	String zip;
+	String email;
 	
-	public static ICustomerFactory getInstance() {
-		return instance;
+	public CustomerFactory (String name,String state,
+			String street,String city,String zip,String email){
+		this.name = name;
+		this.state = state;
+		this.street = street;
+		this.city = city;
+		this.zip = zip;
+		this.email = email;
+		
 	}
-
 	
 	@Override
-	public ICustomer getCustomer(String name,String state,
-			String street,String city,String zip,String email) {
+	public ICustomer getCustomer() {
  		return new Customer(name, state, street, city, zip, email);
 	}
 	
