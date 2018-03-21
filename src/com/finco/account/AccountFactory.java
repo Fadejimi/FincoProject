@@ -8,6 +8,10 @@ public class AccountFactory implements IAccountFactory{
 	
 	private IAccount account;
 	
+	public AccountFactory() {
+		
+	}
+	
 	public AccountFactory(ICustomer customer, String accountNumber, double balance) {
 		account = new Account(customer, accountNumber, balance);
 	}
