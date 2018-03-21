@@ -26,7 +26,6 @@ import java.util.Iterator;
 public class FincoController implements Controller{
 	FincoFrm frame;
 	AccountManager manager;
-	JButton buttonPerAC;
 	JButton buttonCusAC;
 	JButton buttonAddInterest;
 	JButton buttonDeposit;

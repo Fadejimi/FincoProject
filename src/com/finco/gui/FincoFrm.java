@@ -16,23 +16,23 @@ public class FincoFrm extends AbstractFrame
      ****/
     private DefaultTableModel model;
     private JTable JTable1;
-    FincoFrm myframe;
+    //FincoFrm myframe;
     
 	public FincoFrm()
 	{
 		super("Bank Application.");
 		
-		myframe = this;
+		//myframe = this;
 
 		
 		
         JTable1 = getTable();
         	
-		JButton_PerAC.setText("Add Account");
-		addButton(JButton_PerAC, 24, 20, 192, 33);
+		JButton_Cus.setText("Add Account");
+		addButton(JButton_Cus, 24, 20, 192, 33);
 		
 		
-		JButton_CompAC.setActionCommand("jbutton");
+		//JButton_CompAC.setActionCommand("jbutton");
 		
 		JButton_Deposit.setText("Deposit");
 		addButton(JButton_Deposit,468,104,96,33);
@@ -46,7 +46,7 @@ public class FincoFrm extends AbstractFrame
 		JButton_Exit.setText("Exit");
 		addButton(JButton_Exit, 468,248,96,31);
 		
-		JButton_PerAC.setActionCommand("jbutton");
+		//JButton_Cus.setActionCommand("jbutton");
 
 		SymWindow aSymWindow = new SymWindow();
 		this.addWindowListener(aSymWindow);
@@ -57,19 +57,15 @@ public class FincoFrm extends AbstractFrame
 	}
 
 	//javax.swing.JPanel JPanel1 = new javax.swing.JPanel();
-	javax.swing.JButton JButton_PerAC = new javax.swing.JButton();
-	javax.swing.JButton JButton_CompAC = new javax.swing.JButton();
+	javax.swing.JButton JButton_Cus = new javax.swing.JButton();
+	//javax.swing.JButton JButton_CompAC = new javax.swing.JButton();
 	javax.swing.JButton JButton_Deposit = new javax.swing.JButton();
 	javax.swing.JButton JButton_Withdraw = new javax.swing.JButton();
 	javax.swing.JButton JButton_Addinterest= new javax.swing.JButton();
 	javax.swing.JButton JButton_Exit = new javax.swing.JButton();
 
 	public javax.swing.JButton getJButton_PerAC() {
-		return JButton_PerAC;
-	}
-
-	public javax.swing.JButton getJButton_CompAC() {
-		return JButton_CompAC;
+		return JButton_Cus;
 	}
 
 	public javax.swing.JButton getJButton_Deposit() {
@@ -139,12 +135,6 @@ public class FincoFrm extends AbstractFrame
     void JButtonExit_actionPerformed(java.awt.event.ActionEvent event)
 	{
 		System.exit(0);
-	}
-	
-	void JButtonAddinterest_actionPerformed(java.awt.event.ActionEvent event)
-	{
-		  JOptionPane.showMessageDialog(JButton_Addinterest, "Add interest to all accounts","Add interest to all accounts",JOptionPane.WARNING_MESSAGE);
-	    
 	}
 
 
