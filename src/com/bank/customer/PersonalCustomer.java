@@ -7,11 +7,14 @@ import com.finco.customer.ICustomer;
 class PersonalCustomer extends ACustomer{
 
 	String birthDate;
-	
+
 	PersonalCustomer(String name, String state, String street, String city,
-			String zip, String birthDate, String email) {
+			String zip,  String email) {
 		super(name, state, street, city, zip, email);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 

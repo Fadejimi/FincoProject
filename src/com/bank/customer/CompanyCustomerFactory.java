@@ -20,7 +20,7 @@ public class CompanyCustomerFactory implements ICustomerFactory {
 	public ICustomer getCustomer(String name, String state, String street,
 			String city, String zip, String email) {
 		// TODO Auto-generated method stub
-		return  new CompanyCustomer(name, state, street, city, zip, email, city);
+		return  new CompanyCustomer(name, state, street, city, zip, email);
 	}
  
 	
