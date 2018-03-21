@@ -9,7 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.bank.account.AbstractAccountFactory;
 import com.bank.customer.PersonalCustomerFactory;
+import com.bank.customer.PersonalCustomer;
 import com.bank.gui.BankFrm;
 import com.bank.gui.JDialog_AddPAcc;
 import com.finco.account.AccountManager;
@@ -94,15 +96,15 @@ public class BankController {
 	
 	private void createPersonalAccount() {
 		customerFactory = PersonalCustomerFactory.getInstance();
-		//accountFactory = AccountFactory.getInstance();
 		JDialog_AddPAcc pac = new JDialog_AddPAcc(frame, this);
 		pac.setBounds(450, 20, 300, 330);
 		pac.show();
 
 		if (newaccount){
-			
+			accountFactory = AbstractAccountFactory.getFactory(accountType);
 			ICustomer customer = customerFactory.getCustomer(clientName, state, street, 
 					city, zip, email);
+			((PersonalCustomer) customer).setBirthDate(birthdate);
 			IAccount account = accountFactory.getAccount(customer, accountnr, 0);
 			manager.addAccount(account);
 			// add row to table
@@ -110,7 +112,7 @@ public class BankController {
             rowdata[1] = clientName;
             rowdata[2] = city;
             rowdata[3] = state;
-            rowdata[4] = street;
+            rowdata[4] = accountType;
             rowdata[5] = "0";
             //System.out.println(accountnr + ", " + clientName + ", " + city);
             model.addRow(rowdata);

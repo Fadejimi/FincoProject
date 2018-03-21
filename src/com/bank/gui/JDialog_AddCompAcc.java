@@ -147,10 +147,10 @@ public class JDialog_AddCompAcc extends AbstractCustomerDialog
        controller.setEmail(JTextField_EM.getText());
        
        if (JRadioButton_Chk.isSelected()) {
-    	   		controller.setAccountType("C");
+    	   		controller.setAccountType("checking");
        }
        else {
-    	   		controller.setAccountType("S");
+    	   		controller.setAccountType("savings");
        }
 	   controller.setNewaccount(true);
 	   dispose();

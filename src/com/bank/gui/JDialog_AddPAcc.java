@@ -181,10 +181,10 @@ public class JDialog_AddPAcc extends AbstractCustomerDialog
        controller.setState(JTextField_ST.getText());
        controller.setBirthdate(JTextField_BD.getText());
        if (JRadioButton_Chk.isSelected()) {
-	   		controller.setAccountType("C");
+	   		controller.setAccountType("checking");
        }
        else {
-	   		controller.setAccountType("S");
+	   		controller.setAccountType("savings");
        }
        controller.setNewaccount(true);
        dispose();

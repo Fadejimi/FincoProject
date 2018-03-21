@@ -4,7 +4,7 @@ import com.finco.account.IAccount;
 import com.finco.customer.ACustomer;
 import com.finco.customer.ICustomer;
 
-class PersonalCustomer extends ACustomer{
+public class PersonalCustomer extends ACustomer{
 
 	String birthDate;
 

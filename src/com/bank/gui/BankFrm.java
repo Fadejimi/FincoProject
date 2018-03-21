@@ -170,7 +170,7 @@ public class BankFrm extends AbstractFrame
         model.addColumn("Name");
         model.addColumn("City");
         model.addColumn("State");
-        model.addColumn("Street");
+        model.addColumn("Account Type");
         model.addColumn("Amount");
         
         return model;
