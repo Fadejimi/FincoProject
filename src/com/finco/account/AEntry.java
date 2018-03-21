@@ -1,14 +1,8 @@
-/*
- **************  Not used *************
- */
-
-/*
-
 package com.finco.account;
 
 import java.time.LocalDate;
 
-public class Entry implements IEntry{
+public abstract class AEntry implements IEntry{
 
 	private String accountNumber;
 	private LocalDate date;
@@ -17,13 +11,19 @@ public class Entry implements IEntry{
 
 	private IAccount account;
 	
-	public Entry(IAccount account, String accountNumber, LocalDate date, double amt, EntryType entryType) {
+	public AEntry() {
+		
+	}
+	
+	public AEntry(IAccount account, String accountNumber, LocalDate date, double amt, EntryType entryType) {
 		this.account = account;
 		this.accountNumber = accountNumber;
 		this.date = date;
 		this.transactionAmount = amt;
 		this.entryType = entryType;
 	}
+	
+	public abstract double getUpdatedBalance(double balance);
 	
 	
 	public IAccount getAccount() {
@@ -47,6 +47,5 @@ public class Entry implements IEntry{
 	}
 	
 	
+	
 }
-
-*/

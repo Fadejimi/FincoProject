@@ -14,4 +14,5 @@ public interface IEntry {
 
 	public EntryType getEntryType();
 
+	public double getUpdatedBalance(double balance);
 }

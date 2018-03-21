@@ -15,8 +15,9 @@ public class EntryFactory implements IEntryFactory{
 	}
 
 	public IEntry getEntry(IAccount account, String accountNumber, LocalDate date, double amount, EntryType entryType) {
-		
-		return new Entry(account, accountNumber, date, amount, entryType);
-		
+		if(entryType == EntryType.DEPOSIT)
+			return new DepositEntry(account, accountNumber, date, amount, entryType);
+		else
+			return new WithdrawEntry(account, accountNumber, date, amount, entryType);
 	}
 }

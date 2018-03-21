@@ -46,12 +46,15 @@ public abstract class AAccount implements IAccount {
 	// does it get the strategy reference
 	public double executeTransaction(IEntry entry) {
 
-		if (entry.getEntryType() == EntryType.DEPOSIT) {
-			balanceTransaction = new DepositStrategy();
-		} else if (entry.getEntryType() == EntryType.WITHDRAW) {
-			balanceTransaction = new WithdrawStrategy();
-		}
-		return balanceTransaction.getUpdatedBalance(this.getCurrentBalance(), entry.getTransactionAmount());
+//		if (entry.getEntryType() == EntryType.DEPOSIT) {
+//			balanceTransaction = new DepositStrategy();
+//		} else if (entry.getEntryType() == EntryType.WITHDRAW) {
+//			balanceTransaction = new WithdrawStrategy();
+//		}
+//		return balanceTransaction.getUpdatedBalance(this.getCurrentBalance(), entry.getTransactionAmount());
+	
+		return entry.getUpdatedBalance(this.getCurrentBalance());
+		
 	}
 
 	public void setCurrentBalance(double balance) {
