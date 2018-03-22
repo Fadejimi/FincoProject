@@ -10,12 +10,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.bank.account.AbstractAccountFactory;
+import com.bank.account.BankAccountFactory;
 import com.bank.account.CheckingAccount;
 import com.bank.account.CheckingAccountFactory;
 import com.bank.account.SavingsAccount;
 import com.bank.account.SavingsAccountFactory;
 import com.bank.customer.PersonalCustomerFactory;
 import com.bank.customer.AbstractCustomerFactory;
+import com.bank.customer.BankCustomerFactory;
 import com.bank.customer.CompanyCustomer;
 import com.bank.customer.CompanyCustomerFactory;
 import com.bank.customer.PersonalCustomer;
@@ -107,15 +109,6 @@ public class BankController implements Controller {
 		});
 	}
 	
-	private IAccountFactory getAccountFactory(ICustomer customer, String accountnr, 
-			double balance, String acctType) {
-		if (acctType.equals("checkings")) {
-			return new CheckingAccountFactory(customer, accountnr, balance);
-		}
-		else {
-			return new SavingsAccountFactory(customer, accountnr, balance);
-		}
-	}
 	
 	private void createPersonalAccount() {
 		JDialog_AddPAcc pac = new JDialog_AddPAcc(frame, this);
@@ -123,10 +116,10 @@ public class BankController implements Controller {
 		pac.show();
 
 		if (newaccount){
-			customerFactory = new PersonalCustomerFactory(clientName, state, street, 
-					city, zip, birthdate, email);
+			customerFactory = new BankCustomerFactory(clientName, state, street, 
+					city, zip, email, birthdate);
 			ICustomer customer = customerFactory.getCustomer();
-			accountFactory = getAccountFactory(customer, accountnr, 0, accountType);
+			accountFactory = new BankAccountFactory(customer, accountnr, 0.00, accountType);
 			IAccount account = accountFactory.getAccount();
 			manager.addAccount(account);
 			// add row to table
@@ -152,10 +145,10 @@ public class BankController implements Controller {
 
 		if (newaccount){
 			int emps = Integer.parseInt(noEmployees);
-			customerFactory = new CompanyCustomerFactory(clientName, state, street, 
-					city, zip, emps, email);
+			customerFactory = new BankCustomerFactory(clientName, state, street, 
+					city, zip, email, emps);
 			ICustomer customer = customerFactory.getCustomer();
-			accountFactory = getAccountFactory(customer, accountnr, 0, accountType);
+			accountFactory = new BankAccountFactory(customer, accountnr, 0, accountType);
 			IAccount account = accountFactory.getAccount();
 			manager.addAccount(account);
 			// add row to table
