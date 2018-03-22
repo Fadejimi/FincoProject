@@ -3,7 +3,7 @@ package com.finco.gui;
 import java.awt.*;
 import javax.swing.*;
 
-import com.finco.Controller;
+import com.finco.IController;
 import com.finco.FincoController;
 
 public class JDialog_Entry extends AbstractEntryDialog
@@ -12,9 +12,9 @@ public class JDialog_Entry extends AbstractEntryDialog
 
     private AbstractFrame parentframe;
     private String accnr;
-    private Controller controller;
+    private IController controller;
     
-	public JDialog_Entry(AbstractFrame parent, String aaccnr, Controller controller, String title)
+	public JDialog_Entry(AbstractFrame parent, String aaccnr, IController controller, String title)
 	{
 		super(parent, title);
 		parentframe=parent;

@@ -1,12 +1,23 @@
-package com.finco;
+package com.credit_card;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.Iterator;
 
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import com.finco.account.Account;
-import com.finco.account.AccountFactory;
+import com.bank.account.BankAccountFactory;
+import com.bank.customer.BankCustomerFactory;
+import com.bank.gui.BankFrm;
+import com.bank.gui.JDialog_AddPAcc;
+import com.credit_card.account.CreditCardAccountFactory;
+import com.credit_card.gui.CardFrm;
+import com.credit_card.gui.JDialog_AddCard;
+import com.finco.IController;
+import com.finco.account.AAccount;
 import com.finco.account.AccountManager;
 import com.finco.account.EntryType;
 import com.finco.account.IAccount;
@@ -15,24 +26,19 @@ import com.finco.customer.CustomerFactory;
 import com.finco.customer.ICustomer;
 import com.finco.customer.ICustomerFactory;
 import com.finco.gui.AbstractEntryDialog;
-import com.finco.gui.FincoFrm;
-import com.finco.gui.JDialog_AddPCustomer;
 import com.finco.gui.JDialog_Entry;
 
-import java.awt.event.*;
-import java.time.LocalDate;
-import java.util.Iterator;
-
-public class FincoController implements IController{
-	FincoFrm frame;
+public class CardController implements IController{
+	CardFrm frame;
 	AccountManager manager;
-	JButton buttonCusAC;
+	JButton buttonCard;
+	JButton buttonReports;
 	JButton buttonAddInterest;
 	JButton buttonDeposit;
 	JButton buttonWithdraw;
 	ICustomerFactory customerFactory;
 	IAccountFactory accountFactory;
-	String accountnr, clientName,street,city,zip,state,accountType,email,amountDeposit;
+	String accountnr, clientName,street,city,zip,state,accountType,email,amountDeposit,expiryDate;
 	boolean newaccount;
     private Object rowdata[];
     private DefaultTableModel model;
@@ -40,11 +46,12 @@ public class FincoController implements IController{
     String accnr = null;
     int selection = -1;
 	
-	public FincoController(FincoFrm frame, AccountManager manager) {
+	public CardController(CardFrm frame, AccountManager manager) {
 		this.frame = frame;
 		this.manager = manager;
 		
-		buttonCusAC = this.frame.getJButton_PerAC();
+		buttonCard = this.frame.getJButton_Card();
+		buttonReports = this.frame.getJButton_Report();
 		buttonAddInterest = this.frame.getJButton_Addinterest();
 		buttonDeposit = this.frame.getJButton_Deposit();
 		buttonWithdraw = this.frame.getJButton_Withdraw();
@@ -55,10 +62,17 @@ public class FincoController implements IController{
 		model = (DefaultTableModel) JTable1.getModel();
 		//JTable1.setModel(model);
 		
-		buttonCusAC.addActionListener(new ActionListener() {
+		buttonCard.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {
-				createCustomerAccount();
+				createCardAccount();
+			}
+		});
+		
+		buttonReports.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				createReports();
 			}
 		});
 		
@@ -84,23 +98,27 @@ public class FincoController implements IController{
 		});
 	}
 	
-	private void createCustomerAccount() {
-		JDialog_AddPCustomer pac = new JDialog_AddPCustomer(frame, this);
-		pac.setBounds(450, 20, 300, 330);
+	
+	private void createCardAccount() {
+		JDialog_AddCard pac = new JDialog_AddCard(frame, this);
+		pac.setBounds(450, 20, 300, 390);
 		pac.show();
 
 		if (newaccount){
-			customerFactory = new CustomerFactory(clientName, state, street, city, zip, email);
+			customerFactory = new CustomerFactory(clientName, state, street, 
+					city, zip, email);
 			ICustomer customer = customerFactory.getCustomer();
-			accountFactory = new AccountFactory(customer, accountnr, 0);
+			accountFactory = new CreditCardAccountFactory(customer, accountnr, 0.00, accountType, 
+					expiryDate);
 			IAccount account = accountFactory.getAccount();
 			manager.addAccount(account);
 			// add row to table
+			//System.out.println("account number" + accountnr);
             rowdata[0] = accountnr;
             rowdata[1] = clientName;
             rowdata[2] = city;
             rowdata[3] = state;
-            rowdata[4] = street;
+            rowdata[4] = accountType;
             rowdata[5] = "0";
             //System.out.println(accountnr + ", " + clientName + ", " + city);
             model.addRow(rowdata);
@@ -109,6 +127,10 @@ public class FincoController implements IController{
             newaccount=false;
             
         }
+	}
+	
+	private void createReports() {
+		
 	}
 	
 	public String getAccountnr() {
@@ -190,7 +212,10 @@ public class FincoController implements IController{
 	public void setAccnr(String accnr) {
 		this.accnr = accnr;
 	}
-
+	
+	public void setExpiryDate(String date) {
+		this.expiryDate = date;
+	}
 	
 	public boolean isNewaccount() {
 		return newaccount;
@@ -209,7 +234,7 @@ public class FincoController implements IController{
 		int count = 0;
 		Iterator iterator = manager.iterator();
 		while(iterator.hasNext()) {
-			Account acc = (Account) iterator.next();
+			AAccount acc = (AAccount) iterator.next();
 			model.setValueAt(String.valueOf(acc.getCurrentBalance()),count, 5);
 			count++;
 		}

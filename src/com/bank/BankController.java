@@ -23,7 +23,7 @@ import com.bank.customer.CompanyCustomerFactory;
 import com.bank.customer.PersonalCustomer;
 import com.bank.gui.BankFrm;
 import com.bank.gui.JDialog_AddPAcc;
-import com.finco.Controller;
+import com.finco.IController;
 import com.finco.account.AAccount;
 import com.finco.account.Account;
 import com.finco.account.AccountFactory;
@@ -38,7 +38,7 @@ import com.finco.gui.AbstractEntryDialog;
 import com.finco.gui.FincoFrm;
 import com.finco.gui.JDialog_Entry;
 
-public class BankController implements Controller {
+public class BankController implements IController {
 	BankFrm frame;
 	AccountManager manager;
 	JButton buttonPerAC;

@@ -14,7 +14,7 @@ public class AbstractCustomerDialog extends javax.swing.JDialog {
 		setTitle("Add compamy account");
 		setModal(true);
 		getContentPane().setLayout(null);
-		setSize(298,339);
+		setSize(298,360);
 		setVisible(false);
 	}
 	
